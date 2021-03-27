@@ -29,7 +29,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True, allow_unicode=True)
 
-    image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
+    image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True, null=True)
     description = models.TextField(blank=True)
     meta_description = models.TextField(blank=True)
     # 쇼핑몰의 필수적 요소, 가격같은 경우 기준 가격에 할인 가격을 추가하거나 다양한 지역의 세금을 자동으로 계산해 보여주는 방식도 있다.
