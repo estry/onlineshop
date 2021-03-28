@@ -41,13 +41,18 @@
                 {% endif %}
             </li>
             <li class="nav-item ">
-                <a class="nav-link btn btn-outline-success" href="">Cart
+                {% if cart|length == 0 %}
+                <a class="nav-link btn btn-outline-success" href="/">Cart: Empty</a>
+
+                {% else %}
+                <a class="nav-link btn btn-outline-success" href="{% url 'cart:detail' %}">Cart
                     {% if cart|length > 0 %}
-                    ${{ cart.get_total_price }} with {{cart|length}} items
+                    ${{ cart.get_product_total }} with {{cart|length}} items
                     {% else %}
                     : Empty
                     {% endif %}
                 </a>
+                {% endif %}
             </li>
 
         </ul>

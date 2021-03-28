@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import *
+from cart.forms import AddProductForm
 
 
 # Create your views here.
@@ -24,4 +25,5 @@ def product_in_category(request, category_slug=None):
 # URL로부터 슬러그 값을 읽어와서 해당 제품을 찾고 그 제품을 노출
 def product_detail(request, id, product_slug=None):
     product = get_object_or_404(Product, id=id, slug=product_slug)
-    return render(request, 'shop/detail.html', {'product': product})
+    add_to_cart = AddProductForm(initial={'quantity': 1})
+    return render(request, 'shop/detail.html', {'product': product, 'add_to_cart': add_to_cart})
