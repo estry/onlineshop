@@ -31,8 +31,7 @@ def remove(request, product_id):
 # 장바구니 페이지
 def detail(request):
     cart = Cart(request)
-
     # 제품 수량 수정을 위해서 폼을 제품마다 하나씩 추가, 수량은 수정하는 대로 반영해야 하기 때문에 is_update를 True로 설정
     for product in cart:
         product['quantity_form'] = AddProductForm(initial={'quantity': product['quantity'], 'is_update': True})
-        return render(request, 'cart/detail.html', {'cart': cart})
+    return render(request, 'cart/detail.html', {'cart': cart})
